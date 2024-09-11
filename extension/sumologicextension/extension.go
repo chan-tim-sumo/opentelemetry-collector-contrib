@@ -810,7 +810,7 @@ func (se *SumologicExtension) updateMetadataWithHTTPClient(ctx context.Context, 
 
 	addJSONHeaders(req)
 
-	se.logger.Info("Updating collector metadata",
+	se.logger.Info("Updating collector metadata@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
 		zap.String("URL", u.String()),
 		zap.String("body", buff.String()))
 
