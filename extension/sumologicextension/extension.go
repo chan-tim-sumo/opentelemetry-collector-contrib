@@ -708,7 +708,8 @@ var sumoAppProcesses = map[string]string{
 	"postgresql":            "postgres",
 	"postgresql-9.5":        "postgres",
 	"rabbitmq-server":       "rabbitmq",
-	"redis":                 "redis",
+	"redis":                 "redis", // Process name could be redis
+	"redis-server":          "redis", // Also account for redis-server
 	"tomcat":                "tomcat",
 	"kafka-server-start.sh": "kafka", // Need to test this, most common shell wrapper.
 }
@@ -745,6 +746,7 @@ func discoverTags() (map[string]any, error) {
 		t["sumo.disco."+v] = 1 // Sumo does not allow empty tag values, let's set it to anything.
 	}
 
+	//fmt.Printf("THE PROCESS LIST@@@@@@@@@@@ %v\n", t)
 	return t, nil
 }
 
