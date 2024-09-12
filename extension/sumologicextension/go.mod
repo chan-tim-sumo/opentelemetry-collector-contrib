@@ -1,4 +1,5 @@
-module github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension
+# module github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension
+module github.com/chan-tim-sumo/opentelemetry-collector-contrib/extension/sumologicextension
 
 go 1.22.0
 
