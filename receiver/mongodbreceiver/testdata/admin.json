@@ -125,13 +125,13 @@
 	"globalLock": {
 		"activeClients": {
 			"readers": {
-				"$numberInt": "1"
+				"$numberInt": "0"
 			},
 			"total": {
-				"$numberInt": "3"
+				"$numberInt": "16"
 			},
 			"writers": {
-				"$numberInt": "2"
+				"$numberInt": "0"
 			}
 		},
 		"currentQueue": {
@@ -392,17 +392,11 @@
 	"wiredTiger": {
 		"cache": {
 			"pages read into cache": 14,
-			"pages requested from the cache": 215,
-			"bytes read into cache": 10
+			"pages requested from the cache": 215
 		},
 		"session": {
 			"open session count": {
 				"$numberInt": "19"
-			}
-		},
-		"checkpoint": {
-			"total succeed number of checkpoints": {
-				"$numberInt": "42"
 			}
 		}
 	},

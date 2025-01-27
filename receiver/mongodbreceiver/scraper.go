@@ -39,32 +39,24 @@ var (
 )
 
 type mongodbScraper struct {
-	logger             *zap.Logger
-	config             *Config
-	client             client
-	secondaryClients   []client
-	mongoVersion       *version.Version
-	mb                 *metadata.MetricsBuilder
-	prevTimestamp      pcommon.Timestamp
-	prevReplTimestamp  pcommon.Timestamp
-	prevFlushTimestamp pcommon.Timestamp
-	prevCounts         map[string]int64
-	prevReplCounts     map[string]int64
-	prevFlushCount     int64
+	logger            *zap.Logger
+	config            *Config
+	client            client
+	secondaryClients  []client
+	mongoVersion      *version.Version
+	mb                *metadata.MetricsBuilder
+	prevReplTimestamp pcommon.Timestamp
+	prevReplCounts    map[string]int64
 }
 
 func newMongodbScraper(settings receiver.Settings, config *Config) *mongodbScraper {
 	return &mongodbScraper{
-		logger:             settings.Logger,
-		config:             config,
-		mb:                 metadata.NewMetricsBuilder(config.MetricsBuilderConfig, settings),
-		mongoVersion:       unknownVersion(),
-		prevTimestamp:      pcommon.Timestamp(0),
-		prevReplTimestamp:  pcommon.Timestamp(0),
-		prevFlushTimestamp: pcommon.Timestamp(0),
-		prevCounts:         make(map[string]int64),
-		prevReplCounts:     make(map[string]int64),
-		prevFlushCount:     0,
+		logger:            settings.Logger,
+		config:            config,
+		mb:                metadata.NewMetricsBuilder(config.MetricsBuilderConfig, settings),
+		mongoVersion:      unknownVersion(),
+		prevReplTimestamp: pcommon.Timestamp(0),
+		prevReplCounts:    make(map[string]int64),
 	}
 }
 
@@ -263,12 +255,6 @@ func (s *mongodbScraper) recordAdminStats(now pcommon.Timestamp, document bson.M
 	s.recordLatencyTime(now, document, errs)
 	s.recordUptime(now, document, errs)
 	s.recordHealth(now, document, errs)
-	s.recordActiveWrites(now, document, errs)
-	s.recordActiveReads(now, document, errs)
-	s.recordFlushesPerSecond(now, document, errs)
-	s.recordWTCacheBytes(now, document, errs)
-	s.recordCachePercentages(now, document, errs)
-	s.recordPageFaults(now, document, errs)
 }
 
 func (s *mongodbScraper) recordIndexStats(now pcommon.Timestamp, indexStats []bson.M, databaseName string, collectionName string, errs *scrapererror.ScrapeErrors) {
