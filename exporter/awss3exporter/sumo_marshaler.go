@@ -74,6 +74,7 @@ const (
 )
 
 func (sumoMarshaler) MarshalLogs(ld plog.Logs) ([]byte, error) {
+	fmt.Println("TESTING TESTING TESTING@@@@@@@")
 	buf := bytes.Buffer{}
 	rls := ld.ResourceLogs()
 	for i := 0; i < rls.Len(); i++ {
